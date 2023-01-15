@@ -1,5 +1,6 @@
 //Authentications
 const express=require("express")
+var cors = require('cors')
 const app=express()
 const connection=require("./config/db")
 const {UserModel}=require("./models/User.model")
@@ -9,7 +10,7 @@ const { authenticate } = require("./middlewares/authenticate.middleware")
 const { noteRouter } = require("./routes/Note.route")
 const { userRouter } = require("./routes/user.route")
 app.use(express.json())
-
+app.use(cors())
 app.get("/",async(req,res)=>{
     const data= await UserModel.find()
     res.send(data)
